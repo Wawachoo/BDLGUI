@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block header %}
+  <h1>Notifications<small></h1>
+{% endblock %}
+
+{% block content %}
+
+<!-- Alert template -->
+<template id="alertTemplate">
+  <div id="" class="alert alert-info alert-dismissible" role="alert">
+    <button id="closeButton" type="button" class="close" data-dismiss="alert" aria-label="Close" onclick=""><span aria-hidden="true">&times;</span></button>
+    <strong><p id="time"></p></strong>
+    <p id="message"></p>
+  </div>
+</template>
+
+
+<!-- Alerts groups -->
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+  <!-- Errors alerts -->
+  <div id="ErrorsPanel" class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingErrorsPanel">
+      <h4 class="panel-title">
+        <a id="panelTitle" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseErrorsPanel" aria-expanded="true" aria-controls="collapseErrorsPanel">
+          Errors
+        </a>
+      </h4>
+    </div>
+    <div id="collapseErrorsPanel" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingErrorsPanel">
+      <div id="panelContent" class="panel-body">
+        <!-- Here goes alerts. -->
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Warning alerts -->
+  <div id="WarningsPanel" class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingWarningsPanel">
+      <h4 class="panel-title">
+        <a id="panelTitle" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseWarningsPanel" aria-expanded="true" aria-controls="collapseWarningsPanel">
+          Warnings
+        </a>
+      </h4>
+    </div>
+    <div id="collapseWarningsPanel" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingWarningsPanel">
+      <div id="panelContent" class="panel-body">
+        <!-- Here goes alerts. -->
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Info alerts -->
+  <div id="InfosPanel" class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingInfosPanel">
+      <h4 class="panel-title">
+        <a id="panelTitle" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseInfosPanel" aria-expanded="true" aria-controls="collapseInfosPanel">
+          Infos
+        </a>
+      </h4>
+    </div>
+    <div id="collapseInfosPanel" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingInfosPanel">
+      <div id="panelContent" class="panel-body">
+        <!-- Here goes alerts. -->
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="/static/js/notifications.js"></script>
+{% endblock %}

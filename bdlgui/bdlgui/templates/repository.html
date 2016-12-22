@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block header %}
+  <h1 id="name">{{ name }}<small> </small><small id="site">?</small></h1>
+
+
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Status -->
+      <div id="status" class="col-md-6">
+        <h4>
+          <span id="reachable" class="label label-default">Status goes here</span>
+          <span id="indexed" class="label label-default">Status goes here</span>
+          <span id="new" class="label label-default">Status goes here</span>
+        </h4>
+      </div>
+      <!-- Actions -->
+      <div id="actions" class="col-md-6">
+        <div class="btn-group pull-right" role="group">
+          <button id="update" class="btn btn-default" onclick="">Update</button>
+          <button id="refresh" class="btn btn-default" onclick="">Refresh status</button>
+          <button id="stop" class="btn btn-default" disabled="disabled" onclick="">Stop</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div id="statusPanel" class="panel panel-default">
+      <div class="panel-heading" role="tab" id="headingStatusPanel">
+        <h4 class="panel-title">
+          <a id="panelTitle" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseStatusPanel" aria-expanded="true" aria-controls="collapseStatusPanel">
+            Status
+          </a>
+        </h4>
+      </div>
+      <div id="collapseStatusPanel" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingStatusPanel">
+        <div id="panelContent" class="panel-body">
+          <div class="col-md-4">
+            <h2><span id="reachable" class="center-block label label-default">Status goes here</span></h2>
+          </div>
+          <div class="col-md-4">
+            <h2><span id="indexed" class="center-block label label-default">Status goes here</span></h2>
+          </div>
+          <div class="col-md-4">
+            <h2><span id="new" class="center-block label label-default">Status goes here</span></h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="/static/js/repository.js"></script>
+{% endblock %}

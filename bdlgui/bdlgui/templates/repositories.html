@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block header %}
+  <h1>Repositories</h1>
+{% endblock %}
+
+{% block content %}
+  <!-- Batch control -->
+  <h3>Overview <small>Control all repositories at once</small></h3>
+  <div class="container-fluid">
+    <div class="row">
+      <br>
+
+      <div class="col-md-4">
+        <p id="repositoriesCount" class="lead">0 repository</p>
+        <div class="btn-group btn-group-sm" role="group">
+          <button class="btn btn-primary" onclick="setRepositoriesList(); unsetRepositoriesList(); setRepositoriesCount();">Rescan repositories</button>
+          <button class="btn btn-primary" onclick="setRepositoriesStatus();">Refresh status</button>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <p id="outdatedCount" class="lead">0 repository outdated</p>
+      </div>
+
+      <div class="col-md-4">
+        <p id="actionsCount" class="lead">0 action in progress</p>
+        <button id="stopAllButton" class="btn btn-danger btn-sm" disabled="" onclick="stopRepositories();">Stop all</button>
+      </div>
+
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <!-- Per-repository control -->
+  <div>
+    <h3>Details <small>Control specific repository</small></h3>
+  </div>
+  <div class="table-responsive">
+    <table id="repositoriesList" class="table table-hover table-condensed">
+      <!-- Table header. -->
+      <tr>
+        <th>Name</th>
+        <th>Site</th>
+        <th>Status</th>
+        <th>Actions</th>
+        <th>Progress</th>
+      </tr>
+
+      <!-- Table rows template. -->
+      <template id="rowTemplate">
+        <!-- Repository row.
+          id: Repository name.
+        -->
+        <tr id="">
+          <!-- Name & link.
+            href: "/repository/<repository name>"
+            html: Repository name.
+          -->
+          <td id="name">
+            <a id="link" href=""></a>
+          </td>
+
+          <!-- Site.
+            html: Repository site.
+          -->
+          <td id="site">
+          </td>
+
+          <!-- Status.
+            #reachable
+              class: `label label-success` or `label label-danger`
+              html: `Online` or `Offline`
+            #indexed
+              class: `label label-primary`
+              html: Number or ``
+            #new
+              class: `label label-primary` or `label-success`
+              html: Number or `0`
+          -->
+          <td id="status">
+            <span id="reachable" class="label label-default">?</span>
+            <span id="indexed" class="label label-default">?</span>
+            <span id="new" class="label label-default">?</span>
+          </td>
+
+          <!-- Actions.
+            #reachable
+              onclick: `updateRepository(<repository name>);`
+            #refresh
+              onclick: `setRepositoryStatus(<repository name>);`
+            #stop
+              onclick: `stopRepositoryAction(<repository name>);`
+          -->
+          <td id="actions">
+            <div class="btn-group btn-group-xs" role="group">
+              <button id="update" class="btn btn-default" onclick="">Update</button>
+              <button id="refresh" class="btn btn-default" onclick="">Refresh status</button>
+              <button id="stop" class="btn btn-default" disabled="" onclick="">Stop</button>
+            </div>
+          </td>
+
+          <!-- Progress.
+            #progress #progressbar
+              aria-valuenow: Number
+              html: Operation name
+          -->
+          <td id="progress" class="col-md-3">
+            <div class="progress">
+              <div id="progressbar" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+              </div>
+            </div>
+          </td>
+        </tr>
+      </template>
+
+    </table>
+  <div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="/static/js/repositories.js"></script>
+{% endblock %}
